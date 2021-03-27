@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     textField: {
-        fontSize: 22,
+        fontSize: 18,
         flex: 1
     }
 });
