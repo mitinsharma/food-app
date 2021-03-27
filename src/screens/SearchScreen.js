@@ -1,11 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import SearchBar from '../components/SearchBar';
+import ResultLists from '../components/ResultLists';
 import useResults from '../hooks/useResults';
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchAPI, results, message] = useResults();
+
+    const filterResultsByPrice = (price) => {
+        return results.filter(result => {
+            return result.price === price;
+        });
+    }
 
     return (
         <View style={styles.background}>
@@ -14,8 +21,12 @@ const SearchScreen = () => {
                 onTermChange={ (newTerm) => setTerm(newTerm)}
                 onTermSubmit = {() => searchAPI(term) }
             ></SearchBar>
-            <Text>We have found: {results.length}</Text>
             {message ? <Text>{message}</Text> : null}
+            <ScrollView>
+                <ResultLists title="Cost Effective" results={filterResultsByPrice('$')}/>
+                <ResultLists title="Bit Pricier" results={filterResultsByPrice('$$')}/>
+                <ResultLists title="Big Spender" results={filterResultsByPrice('$$$')}/>
+            </ScrollView>
         </View>
     );
 };
@@ -23,7 +34,8 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
     background : {
         backgroundColor: '#FFFFFF',
-        height: '100%'
+        height: '100%',
+        flex: 1
     }
 });
 

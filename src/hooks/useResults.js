@@ -7,7 +7,8 @@ export default() => {
     const [message, setMessage] = useState('');
     
     const searchAPI = async(searchTerm) => {
-        console.log('API called..');
+        console.log('Searcing for ' + searchTerm);
+        if(searchTerm != null)
         try {
             const response = await yelp.get('/search',{
                 params: {
@@ -21,7 +22,7 @@ export default() => {
             console.log(err);
             setMessage('Something went wrong..');
         }
-        console.log('...');
+        console.log('.........');
     }
     
     //call API for one time on reder component
