@@ -23,9 +23,9 @@ const SearchScreen = () => {
             ></SearchBar>
             {message ? <Text>{message}</Text> : null}
             <ScrollView>
-                <ResultLists title="Cost Effective" results={filterResultsByPrice('$')}/>
-                <ResultLists title="Bit Pricier" results={filterResultsByPrice('$$')}/>
-                <ResultLists title="Big Spender" results={filterResultsByPrice('$$$')}/>
+                <ResultLists title="Cost Effective" results={filterResultsByPrice('$')} />
+                <ResultLists title="Bit Pricier" results={filterResultsByPrice('$$')} />
+                <ResultLists title="Big Spender" results={filterResultsByPrice('$$$')} />
             </ScrollView>
         </View>
     );
